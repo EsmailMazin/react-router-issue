@@ -19,7 +19,7 @@ export const register = (name, email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      '/api/users/register',
+      'http://localhost:5000/api/users/register',  // Updated URL to point to backend
       { name, email, password },
       config
     );
@@ -50,14 +50,13 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      '/api/users/login',
+      'http://localhost:5000/api/users/login',  // Updated URL to point to backend
       { email, password },
       config
     );
 
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
 
-    // Save user info in local storage
     localStorage.setItem('userInfo', JSON.stringify(data));
   } catch (error) {
     dispatch({

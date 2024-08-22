@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../redux/actions/userActions';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterScreen = () => {
   const [name, setName] = useState('');
@@ -9,16 +9,16 @@ const RegisterScreen = () => {
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const userRegister = useSelector((state) => state.userRegister);
   const { loading, error, userInfo } = userRegister;
 
   useEffect(() => {
     if (userInfo) {
-      history.push('/login');
+      navigate('/login');
     }
-  }, [userInfo, history]);
+  }, [userInfo, navigate]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -30,21 +30,30 @@ const RegisterScreen = () => {
       <form onSubmit={submitHandler}>
         <input
           type="text"
+          id="name"
+          name="name"
           placeholder="Enter name"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          autoComplete="name"
         />
         <input
           type="email"
+          id="email"
+          name="email"
           placeholder="Enter email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          autoComplete="email"
         />
         <input
           type="password"
+          id="password"
+          name="password"
           placeholder="Enter password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          autoComplete="new-password"
         />
         <button type="submit">Register</button>
         {loading && <p>Loading...</p>}

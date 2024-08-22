@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../redux/actions/userActions';
-import { useHistory } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
   useEffect(() => {
     if (userInfo) {
-      history.push('/');
+      navigate('/');
     }
-  }, [userInfo, history]);
+  }, [userInfo, navigate]);
 
   const submitHandler = (e) => {
     e.preventDefault();
