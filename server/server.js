@@ -1,8 +1,8 @@
-import express from 'express';
+import express from 'express';         // Use ES6 `import`
 import dotenv from 'dotenv';
 import cors from 'cors';
-import connectDB from './backend/config/db.js';
-import userRoutes from './backend/routes/userRoutes.js';
+import connectDB from './backend/config/db.js';   // Use `import` for your db connection
+import userRoutes from './backend/routes/userRoutes.js';  // Import your routes with ES6 syntax
 
 dotenv.config();
 
@@ -14,15 +14,6 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/users', userRoutes);
-
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error('Error details:', err);
-  res.status(500).json({
-    message: 'Something went wrong on the server',
-    error: process.env.NODE_ENV === 'production' ? 'An error occurred' : err.message
-  });
-});
 
 const PORT = process.env.PORT || 5000;
 
