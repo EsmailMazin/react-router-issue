@@ -1,8 +1,8 @@
-import React from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Home from './components/Home'
-import LoginScreen from './components/LoginScreen'
-import RegisterScreen from './components/RegisterScreen'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './components/Home';
+import LoginScreen from './components/LoginScreen';
+import RegisterScreen from './components/RegisterScreen';
 
 const App = () => (
   <Router>
@@ -12,6 +12,6 @@ const App = () => (
       <Route path="/register" element={<RegisterScreen />} />
     </Routes>
   </Router>
-)
+);
 
-export default App
+export default App;
